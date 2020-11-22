@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "name": "travel-log",
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "src/index.js"
+    }
+  ],
+  "alias": [
+    "travel-log"
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "8000",
+    "DATABASE_URL": "@travel-log-db",
+    "CORS_ORIGIN": "https://travel-log-five.vercel.app",
+    "API_KEY": "@travel-log-api-key"
+  }
+}
