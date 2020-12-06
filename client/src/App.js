@@ -12,10 +12,13 @@ const App = () => {
   const [viewport, setViewport] = useState({
     width: '100vw',
     height: '100vh',
-    latitude: 37.6,
-    longitude: -95.655,
+    latitude: 50.4501,
+    longitude: 30.5234,
     zoom: 3
   });
+  const [settings] = useState({
+    doubleClickZoom: false
+  })
 
   const getEntries = async () => {
     const logEntries = await listLogEntries();
@@ -24,9 +27,16 @@ const App = () => {
 
   useEffect(() => {
     getEntries();
+    window.addEventListener('resize', () => {
+      const bodyElement = document.getElementsByClassName('mapboxgl-map')[0].parentElement;
+      bodyElement.style.height = `${window.innerHeight}px`;
+      bodyElement.style.width = `${window.innerWidth}px`;
+      bodyElement.style.overflow = 'hidden';
+    });
   }, []);
 
   const showAddMarkerPopup = (event) => {
+    setShowPopup({});
     const [longitude, latitude] = event.lngLat;
 
     setAddEntryLocation({
@@ -38,6 +48,7 @@ const App = () => {
   return (
     <ReactMapGL
       {...viewport}
+      {...settings}
       mapStyle="mapbox://styles/furkanmutlu/ckhky8hrv02lk19pqqcpmfnqi"
       mapboxApiAccessToken={ process.env.REACT_APP_MAPBOX_TOKEN }
       onViewportChange={nextViewport => setViewport(nextViewport)}
@@ -50,9 +61,12 @@ const App = () => {
             latitude={entry.latitude} 
             longitude={entry.longitude}
           >
-            <div onClick={() => setShowPopup({
-              [entry._id]: true,
-            })}>
+            <div onClick={() => {
+                setAddEntryLocation(null);
+                setShowPopup({
+                [entry._id]: true,
+              })
+            }}>
               <svg
                 className="marker yellow"
                 style={{
@@ -83,8 +97,6 @@ const App = () => {
                 <div className="popup">
                   <h3>{ entry.title }</h3>
                   <p>{ entry.comments }</p>
-                  <small>Visited on: { new Date(entry.visitDate).toLocaleDateString() }</small>
-                  { entry.image && <img src={entry.image} alt={entry.title} /> }
                 </div>
               </Popup>
             ) : null

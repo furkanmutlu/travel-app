@@ -12,12 +12,8 @@ body {
   transform: translate(-50%, -100%);
 }
 
-.error {
-  color: #f05305;
-}
-
 .marker.red path {
-  fill: #f05305;
+  fill: #ff4545;
 }
 
 .marker.yellow path {
@@ -25,24 +21,75 @@ body {
 }
 
 .popup {
-  width: 40vw;
-  padding: 1rem;
+  width: 20vw;
+  padding: 0.7rem;
+  padding-top: 10px;
+  color: white;
 }
 
-.popup img {
-  height: 200px;
-  width: auto;
-  text-align: center;
-  margin: 0 auto;
-  display: block;
+.popup h3 {
+  color: #F3B73E;
+}
+
+h3.error {
+  color: #ff4545;
+}
+
+.textareaWrapper {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
 }
 
 .entry-form label, 
-.entry-form input, 
-.entry-form textarea
-.entry-form button {
+.entry-form input {
   font-size: 1rem;
   margin: 0.5rem 0;
   display: block;
   width: 100%;
+}
+
+.entry-form label {
+  color: #F3B73E;
+  font-weight: 700;
+}
+
+.entry-form input,
+.entry-form textarea {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.entry-form button {
+  font-size: 1rem;
+  margin: 1.2rem 0 0 0;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 5px 15px;
+}
+
+.mapboxgl-popup {
+  z-index: 1;
+} 
+
+.mapboxgl-popup-content {
+  background: #1a2637!important;
+  border: 2px solid white!important;
+}
+
+.mapboxgl-popup-close-button {
+    color: #ff4545;
+    font-size: 30px;
+    margin: 10px;
+    margin-bottom: 30px!important;
+}
+
+.mapboxgl-popup-close-button:hover,
+.entry-form button:hover {
+  background: #2e4361!important;
+  cursor: pointer;
 }

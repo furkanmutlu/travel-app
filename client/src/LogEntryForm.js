@@ -31,14 +31,10 @@ const LogEntryForm = ({ location, onClose }) => {
             <input type="password" ref={register} name="apiKey" required />
             <label htmlFor="title">Title</label>
             <input ref={register} name="title" required/>
-            <label htmlFor="comments">Comments</label>
-            <textarea ref={register} name="comments"  rows={3} />
-            <label htmlFor="description">Description</label>
-            <textarea ref={register} name="description" rows={3} />
-            <label htmlFor="image">Image</label>
-            <input ref={register} name="image" />
-            <label htmlFor="visitDate">Visit Date</label>
-            <input ref={register} name="visitDate" type="date" />
+            <div className="textareaWrapper">
+                <label htmlFor="comments">Comments</label>
+                <textarea ref={register} name="comments"  rows={3} />
+            </div>
             <button disabled={loading}>{ loading ? 'Loading...' : 'Create' }</button>
         </form>
     )
